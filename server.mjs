@@ -234,7 +234,7 @@ app.get("/users", async (req, res) => {
     userModel.findOne({ email: body.email },
         //projection !! mongodb feature//
         // { email:1, firstName:1, lastName:1, age:1, password:0 },
-        "email firstName lastName age password",
+        // "email firstName lastName age password",
         (err, data) => {
             if (!err) {
                 console.log("data: ", data);
