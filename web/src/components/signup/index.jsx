@@ -16,7 +16,7 @@ let Signup = () => {
     useEffect(() => {
 
         let getAllUsers = async () => {
-            let response = await axios.get('https://long-cyan-pigeon-kilt.cyclic.app/users');
+            let response = await axios.get('https://git.heroku.com/firebase-storage-bucket.git/users');
             setUsers(response.data.data)
         }
         getAllUsers();
@@ -43,7 +43,7 @@ let Signup = () => {
 
        await axios({
             method: 'post',
-            url: 'https://long-cyan-pigeon-kilt.cyclic.app/signup',
+            url: 'https://git.heroku.com/firebase-storage-bucket.git/signup',
             // url: "http://localhost:5001/signup",
             data: formData,
             headers: { 'Content-Type': 'multipart/form-data' },
