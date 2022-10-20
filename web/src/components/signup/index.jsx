@@ -41,7 +41,7 @@ let Signup = () => {
         formData.append("profilePicture", profilePictureInput.files[0]); // file input is for browser only, use fs to read file in nodejs client
 
 
-        axios({
+       await axios({
             method: 'post',
             url: `${state.baseUrl}/signup`,
             // url: "http://localhost:5001/signup",
