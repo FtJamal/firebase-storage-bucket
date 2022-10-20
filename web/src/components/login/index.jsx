@@ -45,7 +45,7 @@ export default function Login() {
             email: data.get('email'),
             password: data.get('password'),
         });
-        let baseUrl = `${state.baseUrl}/login`;
+        // let baseUrl = `${state.baseUrl}/login`;
 
         axios.post(`${baseUrl}/login`, {
             email: data.get('email'),
