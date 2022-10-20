@@ -2,6 +2,8 @@
 import axios from 'axios';
 import { useContext, useEffect, useState } from "react";
 import { GlobalContext } from '../../context/Context';
+import "./index.css"
+
 
 let Signup = () => {
 
@@ -41,7 +43,7 @@ let Signup = () => {
         formData.append("profilePicture", profilePictureInput.files[0]); // file input is for browser only, use fs to read file in nodejs client
 
 
-       await axios({
+        await axios({
             method: 'post',
             url: `${state.baseUrl}/signup`,
             // url: "http://localhost:5001/signup",
@@ -58,40 +60,51 @@ let Signup = () => {
             })
     }
     return (
-        <div >
-            <h1>Sign up</h1>
-            <form onSubmit={doSignup}>
-                Name: <input name="name" type="text" placeholder="Name" id='name' onChange={(e) => { setName(e.target.value) }} />
-                <br />
-                Email: <input name="email" type="email" placeholder="Email" id='email' onChange={(e) => { setEmail(e.target.value) }} />
-                <br />
-                Password: <input name="password" type="password" placeholder="Password" id='password' onChange={(e) => { setPassword(e.target.value) }} />
-                <br />
+        <div>
+            <h1 className='signup'>Sign up</h1>
+            <div className='container'>
+                <form className='form' onSubmit={doSignup}>
 
-                Profile Picture: <input type="file" id="profilePictureInput" accept='image/*'
-                    onChange={() => {
-                        ////// to display images instantly on screen
-                        var profilePictureInput = document.getElementById("profilePictureInput");
-                        var url = URL.createObjectURL(profilePictureInput.files[0])
-                        console.log("url: ", url);
-                        document.getElementById("img").innerHTML = `<img width="200px" src="${url}" alt="" id="img"> `
-                    }} />
+                    Name: <input name="name" type="text" placeholder="Name" id='name' onChange={(e) => { setName(e.target.value) }} />
+                    <br />
+                    Email: <input name="email" type="email" placeholder="Email" id='email' onChange={(e) => { setEmail(e.target.value) }} />
+                    <br />
+                    Password: <input name="password" type="password" placeholder="Password" id='password' onChange={(e) => { setPassword(e.target.value) }} />
+                    <br />
 
-                <div id="img"></div>
+                    Profile Picture: <input type="file" id="profilePictureInput" accept='image/*'
+                        onChange={() => {
+                            ////// to display images instantly on screen
+                            var profilePictureInput = document.getElementById("profilePictureInput");
+                            var url = URL.createObjectURL(profilePictureInput.files[0])
+                            console.log("url: ", url);
+                            document.getElementById("img").innerHTML = `<img width="200px" src="${url}" alt="" id="img"> `
+                        }} />
 
-                <br />
-                <button type='submit'>Signup</button>
-            </form>
+                    <div id="img"></div>
 
-            <h1>Users List: </h1>
+                    <br />
+                    <button type='submit'>Signup</button>
+
+                </form>
+            </div>
+
+            <h1 className='header'>Users List: </h1>
 
             <div>
                 {users.map(eachUser => (
-                    <div key={eachUser.id}>
-                        <h4>Name:{eachUser.name}</h4>
-                        <h6>Email: {eachUser.email}</h6>
-                        <img width="100px" src={eachUser.profilePicture} alt="" />
-                        <br/>
+                    <div className='container'>
+                        <div className='users'>
+                            <div key={eachUser.id}>
+                                <div className='profile'>
+                                <img className='img' src={eachUser.profilePicture} alt="" />
+                                <span><b>{eachUser.name}</b></span>
+                                </div>
+                                <h6>Email: {eachUser.email}</h6>
+                                
+                                <br />
+                            </div>
+                        </div>
                     </div>
                 ))}
             </div>

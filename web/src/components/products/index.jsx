@@ -1,7 +1,7 @@
 import { GlobalContext } from '../../context/Context';
 import { useContext, useEffect, useState } from "react";
 import axios from 'axios';
-import "./index.css"
+import "./style.css"
 
 
 let Products = () => {
@@ -99,42 +99,46 @@ let Products = () => {
 
     return (
         <div>
-            <h1>Form</h1>
-            <form onSubmit={handleSubmit}>
-                Name: <input type="text" name='name' placeholder='name' id='name' onChange={(e) => { setName(e.target.value) }} />
-                <br />
-                Description: <input type="text" name='description' placeholder='description' id='description' onChange={(e) => { setDescription(e.target.value) }} />
-                <br />
-                Price: <input type="number" name='price' placeholder='price' id='price' onChange={(e) => { setPrice(e.target.value) }} />
-                <br />
-                Product Image: <input type="file" name='productImage' id='productImage' accept='image/*'
-                    onChange={() => {
-                        //// to display images instantly on screen
-                        var productImage = document.getElementById("productImage");
-                        var url = URL.createObjectURL(productImage.files[0])
-                        console.log("url: ", url);
-                        document.getElementById("img").innerHTML = `<img width="200px" src="${url}" alt="" id="img"> `
-                    }} />
+            <h1 className='header' >Form</h1>
+            <div className='container'>
+                <form className='form' onSubmit={handleSubmit}>
+                    Name: <input type="text" name='name' placeholder='name' id='name' onChange={(e) => { setName(e.target.value) }} />
+                    <br />
+                    Description: <input type="text" name='description' placeholder='description' id='description' onChange={(e) => { setDescription(e.target.value) }} />
+                    <br />
+                    Price: <input type="number" name='price' placeholder='price' id='price' onChange={(e) => { setPrice(e.target.value) }} />
+                    <br />
+                    Product Image: <input type="file" name='productImage' id='productImage' accept='image/*'
+                        onChange={() => {
+                            //// to display images instantly on screen
+                            var productImage = document.getElementById("productImage");
+                            var url = URL.createObjectURL(productImage.files[0])
+                            console.log("url: ", url);
+                            document.getElementById("img").innerHTML = `<img width="200px" src="${url}" alt="" id="img"> `
+                        }} />
 
-                <div id="img"></div>
-                <br />
+                    <div id="img"></div>
+                    <br />
 
-                <button type='submit'>Submit</button>
-            </form>
+                    <button type='submit'>Submit</button>
+                </form>
+            </div>
 
             <hr />
 
             {(editProduct !== null) ? (<div>
 
-                <h1>update form</h1>
-                <form onSubmit={updateHandler}>
-                    Name: <input type="text" onChange={(e) => { setEditProduct({ ...editProduct, name: e.target.value }) }} value={editProduct.name} /> <br />
-                    Price:<input type="text" onChange={(e) => { setEditProduct({ ...editProduct, price: e.target.value }) }} value={editProduct.price} /> <br />
-                    Description:<input type="text" onChange={(e) => { setEditProduct({ ...editProduct, description: e.target.value }) }} value={editProduct.description} /> <br />
-                    Code: <input type="text" onChange={(e) => { setEditProduct({ ...editProduct, code: e.target.value }) }} value={editProduct.code} /> <br />
+                <h1 className='header'>update form</h1>
+                <div className='container'>
+                    <form className='form' onSubmit={updateHandler}>
+                        Name: <input type="text" onChange={(e) => { setEditProduct({ ...editProduct, name: e.target.value }) }} value={editProduct.name} /> <br />
+                        Price:<input type="text" onChange={(e) => { setEditProduct({ ...editProduct, price: e.target.value }) }} value={editProduct.price} /> <br />
+                        Description:<input type="text" onChange={(e) => { setEditProduct({ ...editProduct, description: e.target.value }) }} value={editProduct.description} /> <br />
+                        Code: <input type="text" onChange={(e) => { setEditProduct({ ...editProduct, code: e.target.value }) }} value={editProduct.code} /> <br />
 
-                    <button type="submit" >Proceed Update</button>
-                </form>
+                        <button type="submit" >Proceed Update</button>
+                    </form>
+                </div>
             </div>) : null}
 
             <hr />
