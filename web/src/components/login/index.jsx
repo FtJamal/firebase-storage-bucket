@@ -54,14 +54,16 @@ export default function Login() {
 
             .then(function (response) {
                 console.log("response: ", response.data);
+                document.querySelector("#message").innerHTML = response.data.message;
 
-                dispatch({ type:"USER_LOGIN" , payload: response.data.profile})
+                dispatch({ type: "USER_LOGIN", payload: response.data.profile })
 
 
             })
 
             .catch(function (error) {
                 console.log("error in api call");
+                document.querySelector("#message").innerHTML = error.response.data.message;
 
             });
 
@@ -84,7 +86,7 @@ export default function Login() {
                         <LockOutlinedIcon />
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                         Login
+                        Login
                     </Typography>
                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
                         <TextField
@@ -119,6 +121,9 @@ export default function Login() {
                         >
                             Sign In
                         </Button>
+                        <h3 className="message" id="message">
+                        </h3>
+                        
                         <Grid container>
                             <Grid item xs>
                                 <Link href="#" variant="body2">
